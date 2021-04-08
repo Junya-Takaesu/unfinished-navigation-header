@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <h1>Sample Navigation Menus</h1>
+    <div class="menu-group">
+      <button class="navigation-header" data-header="about us">About Us</button>
+      <div class="drop-down-list">
+        <button class="links">What We Do</button>
+        <button class="links">What We Value</button>
+        <button class="links">Our Clients</button>
+      </div>
+    </div>
+    <div class="menu-group">
+      <button class="navigation-header" data-header="services">Services</button>
+      <div class="drop-down-list">
+        <button class="links">Tell Me Post</button>
+        <button class="links">WhatsThat</button>
+        <button class="links">EVERYT</button>
+        <button class="links">it's a THING</button>
+      </div>
+    </div>
+  </nav>
+  <section class="container">
+    <h1>Unfinished Navgation Right There ...</h1>
+  </section>
+  <script>
+    const menuGroups = document.querySelectorAll(".menu-group");
+    menuGroups.forEach(menuGroup => {
+      const navigationHeader = menuGroup.querySelector(".navigation-header");
+      navigationHeader.addEventListener("click", () => {
+        const dropDownList = menuGroup.querySelector(".drop-down-list");
+        dropDownList.classList.toggle("show-list");
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      const pathToClickedElement = event.path;
+      let isMenuClicked = false;
+      let menuGroup = null;
+      pathToClickedElement.forEach(element =>  {
+        if (element.classList) {
+          isMenuClicked ||= element.classList.contains("menu-group");
+        }
+      });
+
+      if (isMenuClicked === false) {
+        const dropDownList = document.querySelector(".show-list");
+        if (dropDownList) {
+          dropDownList.classList.remove("show-list");
+        }
+      }
+    });
+  </script>
+</body>
+</html>
